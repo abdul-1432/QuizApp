@@ -1,0 +1,252 @@
+        body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f0e6bb;
+}
+
+.quiz-container {
+  display: flex;
+  flex-direction: row-reverse;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.answer-container {
+  font-size: medium;
+}
+
+#status-container {
+  text-align: end;
+  position: absolute;
+  font-size: 24px;
+}
+
+.question-table {
+  border: 1px solid black;
+  position: relative;
+  top: 40px;
+  right: 1px;
+  font-size: 17px;
+  width: 15px;
+  border-collapse: collapse;
+  margin-right: 0px;
+  border-radius: 0%;
+  background-color: #d5e4fe;
+}
+
+.question-table th,
+.question-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5%;
+}
+
+.question-table td:hover {
+  background-color: #fe6936;
+  color: #000000;
+}
+
+.question-table th {
+  background-color: #333;
+  color: #fff;
+}
+
+.quiz-content {
+  flex: 1;
+}
+
+.quiz-content h1 {
+  margin-top: 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .question-table th,
+  .question-table td {
+    padding: 5px;
+  }
+
+  .quiz-content h1 {
+    font-size: 1.5em;
+  }
+}
+/* responsive ends */
+
+.initial {
+  background-color: #00c9a7;
+}
+
+.visited {
+  background-color: #74bddf;
+}
+
+.selected {
+  background-color: #11955c;
+  color: white;
+}
+
+.not-selected {
+  background-color: red;
+  color: rgb(0, 0, 0);
+}
+
+.submitted {
+  background-color: purple;
+  color: rgb(255, 255, 255);
+}
+
+.question-container .p {
+  align-items: center;
+  text-align: center;
+  margin-top: 30%;
+}
+
+#timer {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: rgb(255, 0, 0);
+}
+
+.timer {
+  color: rgb(53, 51, 51);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.result-table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.result-table th,
+.result-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.result-table th {
+  background-color: #333;
+  color: #fff;
+}
+
+.result-details {
+  margin-top: 20px;
+}
+
+.result-details p {
+  margin: 0;
+}
+
+.read-only {
+  pointer-events: none;
+}
+
+/* Basic button styling */
+button {
+  background: 0 0;
+  display: inline-flexbox;
+  direction: row;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  height: 40px;
+  line-height: auto;
+  padding: 0 30px 0 25px;
+  position: relative;
+  transition: all 0.3s;
+  border: 1px solid black;
+  font-size: 1.3em;
+  letter-spacing: 2px;
+  z-index: 0;
+  margin: 60px auto 0 auto;
+  color: #000000;
+  overflow: hidden;
+  font-family: "Open Sans", sans-serif;
+}
+
+button:hover {
+  color: #000000;
+}
+
+/* Adding the hover effect base */
+button::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  background: #f99a9b;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: all 0.3s;
+  z-index: -1;
+}
+
+/* Slide in from left */
+button.next::before {
+  transform: translate(-100%, 0);
+}
+
+button.next:hover::before {
+  transform: translate(0, 0);
+}
+
+/* Slide in from right */
+button.prev::before {
+  transform: translate(100%, 0);
+}
+
+button.prev:hover::before {
+  transform: translate(0, 0);
+}
+
+/* Grow from submit */
+button.submit::before {
+  transform: scale(0, 0);
+  background: greenyellow;
+}
+
+button.submit:hover::before {
+  transform: scale(1, 1);
+}
+
+button.retake-quiz::before {
+  transform: translate(0, 100%);
+}
+
+button.retake-quiz:hover::before {
+  transform: translate(0, 0);
+}
+
+/* Adjust styles for tablets and smaller screens */
+@media screen and (max-width: 768px) {
+  .quiz-container {
+    max-width: 90%;
+  }
+}
+
+/* Adjust styles for mobile devices */
+@media screen and (max-width: 576px) {
+  .quiz-container {
+    max-width: 100%;
+  }
+
+  /* Add specific mobile styles here */
+}
+

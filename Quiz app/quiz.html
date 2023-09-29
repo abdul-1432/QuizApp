@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="quiz.css">
+    </head>
+<body>
+    <div class="quiz-container">
+        <table class="question-table">
+            <thead>
+                <tr>
+                    <th>Ques ID</th>
+                </tr>
+            </thead>
+            <tbody id="question-table-body">
+            </tbody>
+        </table>
+        <div class="quiz-content">
+            <h1>Quiz App</h1>
+            <div id="question-container">
+                <p>Loading...</p>
+            </div>
+            <div id="answer-container" class="answer-container">
+            </div>
+            <div id="status-container" class="status-container">
+            </div>
+            <div class="navigation-buttons">
+                <button id="previous-button" disabled class="prev">Previous</button>
+                <button id="next-button" disabled class="next">Next</button>
+                <button id="submit-button" disabled class="submit">Submit</button>
+                <button id="retake-button" class="retake-quiz" style="display: none;">Retake Quiz</button>
+            </div>
+            <div id="result-container" style="display: none;">
+                <h2>Quiz Result</h2>
+                <table class="result-table">
+                    <tr>
+                        <th>Total Questions:</th>
+                        <td id="total-questions"></td>
+                    </tr>
+                    <tr>
+                        <th>Total Marks Obtained:</th>
+                        <td id="total-marks-obtained"></td>
+                    </tr>
+                    <tr>
+                        <th>Correct Answers:</th>
+                        <td id="correct-answers"></td>
+                    </tr>
+                    <tr>
+                        <th>Wrong Answers:</th>
+                        <td id="wrong-answers"></td>
+                    </tr>
+                </table>
+                <div class="result-details">
+                    <h3>Question-wise Details:</h3>
+                    <ul id="result-list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="timer">30:00</div>
+    <script src="quiz .js"></script>
+</body>
+</html>

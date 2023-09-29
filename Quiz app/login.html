@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Lily+Script+One);
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: arial, tahoma, sans-serif;
+  font-size: 1px;
+  font-weight: normal;
+  background: #f3f0e6bb;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  margin: 0 auto;
+  padding: 5%;
+  width: 90%;
+  max-width: 400px;
+  height: auto;
+  overflow: hidden;
+  background: #d5e4fe;
+  border-radius: 10px;
+}
+
+form label {
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+form label,
+form input {
+  float: left;
+  clear: both;
+}
+
+form input {
+  margin: 5% 0;
+  padding: 5% 3%;
+  width: 100%;
+  outline: none;
+  border: 1px solid #00000000;
+  border-radius: 10px;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: 0.2s ease all;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+  border-color: cornflowerblue;
+}
+
+input[type="submit"] {
+  width: auto;
+  background: #000000;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  transition: 0.2s ease all;
+}
+
+input[type="submit"]:hover {
+  opacity: 0.8;
+  background: #00c9a7;
+  color: #000000;
+}
+
+input[type="submit"]:active {
+  opacity: 0.4;
+}
+
+#logo {
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  max-width: 100px;
+  font-size: 70px;
+  text-align: left;
+  color: #487aff;
+  transition: 0.2s ease all;
+}
+
+#logo:hover {
+  color: cornflowerblue;
+}
+
+/* Media Queries for responsiveness */
+
+@media screen and (min-width: 600px) {
+  form {
+    padding: 3%;
+  }
+
+  input[type="submit"] {
+    padding: 3% 5%;
+  }
+
+  #logo {
+    font-size: 70px;
+  }
+}
+
+@media screen and (min-width: 980px) {
+  form {
+    width: 300%;
+  }
+}
+
+    </style>
+</head>
+<body>
+        <form method="post" action="quiz.html">
+        <h6 id="logo">Login</h6>
+       
+        <label for="username">User Name</label>
+        <input type="text" id="username" name="username" placeholder="Enter your name.." autocomplete="off" required />
+      
+        <label for="gmail">Email </label>
+        <input type="email" id="email" name="username" placeholder="Enter your email abc@gmail.com" autocomplete="off" required />
+      
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password.." autocomplete="off" required />
+      
+        <input type="submit" name="submit" value="Start Quiz" />
+      </form>
+    <script>
+      
+//jQuery time
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+$(".next").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	next_fs = $(this).parent().next();
+	
+	//activate next step on progressbar using the index of next_fs
+	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+	
+	//show the next fieldset
+	next_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale current_fs down to 80%
+			scale = 1 - (1 - now) * 0.2;
+			//2. bring next_fs from the right(50%)
+			left = (now * 50)+"%";
+			//3. increase opacity of next_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({
+        'transform': 'scale('+scale+')',
+        'position': 'absolute'
+      });
+			next_fs.css({'left': left, 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+$(".previous").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	previous_fs = $(this).parent().prev();
+	
+	//de-activate current step on progressbar
+	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+	
+	//show the previous fieldset
+	previous_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale previous_fs from 80% to 100%
+			scale = 0.8 + (1 - now) * 0.2;
+			//2. take current_fs to the right(50%) - from 0%
+			left = ((1-now) * 50)+"%";
+			//3. increase opacity of previous_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'left': left});
+			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+    </script>
+</body>
+</html>
